@@ -1,14 +1,21 @@
 ﻿// initalization
-int minrange = 1;
-int maxrange = 10;
-int fails = 0;
+byte minrange = 1;
+byte maxrange = 10;
+byte fails = 0;
 int points = 0;
 bool correct = true;
-int number = 0;
+byte number = 0;
+byte guess;
+//bool easyMode = false;
 
 // startup
 Console.WriteLine("Welcome to the funny number game!");
 Console.WriteLine("(Shinevee Edition)");
+
+//Console.WriteLine("");
+
+//Console.WriteLine("Type \"true\" for easy mode");
+//try { easyMode = bool.Parse(Console.ReadLine()); } catch (Exception) { easyMode = false; }
 
 while (fails < 4)
 {
@@ -20,8 +27,9 @@ while (fails < 4)
         Random rnd = new Random();
 
         Random rd = new Random();
-        number = rd.Next(minrange, maxrange);
-    //    Console.WriteLine("Debug line (it's " + number + ")"); // debug line, To Be Removed
+        number = (byte)rd.Next(minrange, maxrange);
+   Console.WriteLine("Debug line (it's " + number + ")"); // debug line, To Be Removed
+//        Console.WriteLine("Easymode is " + easyMode); // debug
         correct = false;
     }
 
@@ -29,7 +37,8 @@ while (fails < 4)
     Console.Write("Guess: ");
 
     // game
-    int guess = Convert.ToInt32(Console.ReadLine());
+    try { guess = byte.Parse(Console.ReadLine()); } catch (Exception) { guess = 0; }
+
     if (guess != number)
     {
         if (guess > number)
@@ -41,9 +50,13 @@ while (fails < 4)
             Console.WriteLine("It's higher than " + guess);
         }
         fails++;
-        if (fails < 4)
+        if (fails < 3)
         {
             Console.WriteLine(4 - fails + " mistakes until Game Over");
+        }
+        else
+        {
+            Console.WriteLine(4 - fails + " mistake until Game Over");
         }
         guess = 0;
     }
@@ -51,6 +64,11 @@ while (fails < 4)
     {
         Console.WriteLine("Correct");
         points++;
+        //    if (easyMode = true && fails > 0)
+        //    {       
+        //           Console.WriteLine("+1 possible mistakes");
+        //           fails--;
+        //     }
         guess = 0;
         correct = true;
     }
