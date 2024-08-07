@@ -28,7 +28,7 @@ while (fails < 4)
 
         Random rd = new Random();
         number = (byte)rd.Next(minrange, maxrange);
-   Console.WriteLine("Debug line (it's " + number + ")"); // debug line, To Be Removed
+//   Console.WriteLine("Debug line (it's " + number + ")"); // debug line, To Be Removed
 //        Console.WriteLine("Easymode is " + easyMode); // debug
         correct = false;
     }
@@ -54,7 +54,7 @@ while (fails < 4)
         {
             Console.WriteLine(4 - fails + " mistakes until Game Over");
         }
-        else
+        else if (fails == 3)
         {
             Console.WriteLine(4 - fails + " mistake until Game Over");
         }
