@@ -75,9 +75,9 @@ while (fails < maxFails)
 
         Random rd = new Random();
         number = (byte)rd.Next(minrange, maxrange);
-        Console.WriteLine("Debug line (it's " + number + ")"); // debug line, To Be Removed
-        Console.WriteLine("Easymode is " + easyMode); // debug
-        Console.WriteLine("fails regained is " + easyMode2 + "\nand fail count is " + fails); //debug
+     //   Console.WriteLine("Debug line (it's " + number + ")"); // debug line, To Be Removed
+    //    Console.WriteLine("Easymode is " + easyMode); // debug
+     //   Console.WriteLine("fails regained is " + easyMode2 + "\nand fail count is " + fails); //debug
         correct = false;
     }
 
