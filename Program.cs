@@ -2,11 +2,11 @@
 byte minrange = 1;
 byte maxrange;
 byte fails = 0;
-int points = 0;
+long points = 0;
 bool correct = true;
 byte number = 0;
 byte guess;
-byte easyMode = 0;
+char easyMode = '0';
 byte maxFails;
 byte easyMode2 = 1;
 
@@ -16,8 +16,8 @@ Console.WriteLine("(Shinevee Edition)");
 
 // setup
 Console.WriteLine("\nWhat should the highest possible number generated be?");
-Console.WriteLine("*Must be a number between \"2\" and \"255\"");
-Console.WriteLine("**If the answer is not a number between 2 and 255, it shall be inputted as \"10\"");
+Console.WriteLine("*Must be a number between \"3\" and \"255\"");
+Console.WriteLine("**If the answer is not a number between 3 and 255, it shall be inputted as \"10\"");
 try
 {
     maxrange = byte.Parse(Console.ReadLine());
@@ -26,13 +26,14 @@ catch (Exception)
 {
     maxrange = 10;
 }
-if (maxrange < 2)
+if (maxrange < 3)
 {
     maxrange = 10;
 }
 
 Console.WriteLine("\nHow many tries would you like to be able to make before Game Over?");
 Console.WriteLine("*Must be a number between \"1\" and \"255\"");
+
 Console.WriteLine("**If the answer is not a number between 1 and 255, it shall be inputted as \"4\"");
 try
 {
@@ -49,9 +50,9 @@ if (maxFails == 0) {
 if (maxFails > 1)
 {
     Console.WriteLine("\nType \"1\" if you would like to regain a lost try for each correct guess");
-    try { easyMode = byte.Parse(Console.ReadLine()); } catch (Exception) { easyMode = 0; }
+    try { easyMode = char.Parse(Console.ReadLine()); } catch (Exception) { easyMode = '0'; }
     Console.WriteLine("");
-    if (easyMode == 1)
+    if (easyMode == '1')
     {
         Console.WriteLine("How many tries would you like to regain per each correct guess? (must be between 1 & 255)\n((it's too late to back out of this))");
         try { easyMode2 = byte.Parse(Console.ReadLine()); } catch (Exception) { easyMode2 = 1; }
@@ -112,7 +113,7 @@ while (fails < maxFails)
     {
         Console.WriteLine("Correct");
         points++;
-        if (easyMode == 1 && fails > 0)
+        if (easyMode == '1' && fails > 0)
             {       
                    
             int val = fails - easyMode2;
