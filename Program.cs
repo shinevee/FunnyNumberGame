@@ -8,6 +8,7 @@ byte number = 0;
 byte guess;
 byte easyMode = 0;
 byte maxFails;
+byte easyMode2 = 1;
 
 Console.WriteLine("Welcome to the funny number game!");
 Console.WriteLine("(Shinevee Edition)");
@@ -50,6 +51,16 @@ if (maxFails > 1)
     Console.WriteLine("\nType \"1\" if you would like to regain a lost try for each correct guess");
     try { easyMode = byte.Parse(Console.ReadLine()); } catch (Exception) { easyMode = 0; }
     Console.WriteLine("");
+    if (easyMode == 1)
+    {
+        Console.WriteLine("How many tries would you like to regain per each correct guess? (must be between 1 & 255)\n((it's too late to back out of this))");
+        try { easyMode2 = byte.Parse(Console.ReadLine()); } catch (Exception) { easyMode2 = 1; }
+        Console.WriteLine("");
+        if (easyMode2 == 0)
+        {
+            easyMode2 = 1;
+        }
+    }
 }
 
 // game logic
@@ -64,8 +75,9 @@ while (fails < maxFails)
 
         Random rd = new Random();
         number = (byte)rd.Next(minrange, maxrange);
-    //    Console.WriteLine("Debug line (it's " + number + ")"); // debug line, To Be Removed
-    //    Console.WriteLine("Easymode is " + easyMode); // debug
+        Console.WriteLine("Debug line (it's " + number + ")"); // debug line, To Be Removed
+        Console.WriteLine("Easymode is " + easyMode); // debug
+        Console.WriteLine("fails regained is " + easyMode2 + "\nand fail count is " + fails); //debug
         correct = false;
     }
 
@@ -102,9 +114,16 @@ while (fails < maxFails)
         points++;
         if (easyMode == 1 && fails > 0)
             {       
-                   Console.WriteLine("+1 possible mistakes\n");
-                   fails--;
+                   
+            int val = fails - easyMode2;
+            if (val < 0)
+            {
+                val = 0;
             }
+            Console.WriteLine("+" + easyMode2 + " possible mistakes\n(unless overflow would occur)\n((don't worry, you'll still regain tries))\n");
+            fails = (byte)val;
+            val = 0;
+        }
         guess = 0;
         correct = true;
         Console.WriteLine("");
