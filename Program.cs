@@ -133,6 +133,7 @@ while (fails < maxFails)
 while (fails == maxFails)
 {
     Console.WriteLine("\nGame Over!");
+    Console.WriteLine("It was " + number + "\n");
     if (points != 1)
     {
         Console.WriteLine("You guessed " + points + " numbers correctly");
